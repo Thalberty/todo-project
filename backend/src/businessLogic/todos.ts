@@ -58,9 +58,9 @@ export async function updateImageTodo(
 
   const imageId = uuid.v4()
   const url = getUploadUrl(imageId)
-  const imageUrl =await todoAccess.updateTodoImage(todoId, userId, imageId)
+  await todoAccess.updateTodoImage(todoId, userId, imageId)
 
-  return {imageUrl: imageUrl, uploadUrl: url}
+  return url
 }
 
 export async function deleteTodo(
