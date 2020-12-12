@@ -62,8 +62,8 @@ export class TodoAccess {
     await this.docClient.update({
       TableName: this.todosTable,
       Key: {
-        userId: userId,
-        todoId: todoId
+        todoId: todoId,
+        userId: userId
       },
       UpdateExpression: "set attachmentUrl=:attachmentUrl",
       ExpressionAttributeValues: {
