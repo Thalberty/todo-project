@@ -22,6 +22,19 @@ custom:
       migrate: true
     stages: # Add this section of the config
       - dev
+  documentation:
+    api:
+      info:
+        version: v1.0.0
+        title: Udagram API
+        description: Serverless application for todo list
+    models:
+      - name: CreateTodo
+        contentType: application/json
+        schema: ${file(validator/todo-item-create.json)}  
+      - name: UpdateTodo
+        contentType: application/json
+        schema: ${file(validator/todo-item-update.json)} 
 
 provider:
   
@@ -119,6 +132,8 @@ functions:
     iamRoleStatements:
       - Effect: Allow
         Action:
+          - dynamodb:Scan
+          - dynamodb:PutItem
           - dynamodb:DeleteItem
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}          
 
